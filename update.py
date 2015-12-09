@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import pickle, feedparser, urllib
+import os, pickle, feedparser, urllib
 from datetime import datetime
 
 def format_date(date_str):
@@ -12,7 +12,9 @@ def main():
     endpoint = 'http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=-CLIP+'
 
     print('Loading queries...')
-    with open('queries.txt') as f:
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    query_file = os.path.normpath(os.path.join(dirname, './queries.txt'))
+    with open(query_file, 'r') as f:
         queries = [query.strip() for query in f.readlines() if len(query.strip()) > 0]
 
     entries = {}
@@ -32,7 +34,8 @@ def main():
                 'source': source
             })
 
-    with open("newsclip.dump", "wb") as f:
+    dump_file = os.path.normpath(os.path.join(dirname, './newclip.dump'))
+    with open(dump_file, 'wb') as f:
         pickle.dump(entries, f)
 
     print('Done.')
