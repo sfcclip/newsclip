@@ -15,4 +15,4 @@ def index():
 
     return template('./index.j2', queries=queries, entries=entries)
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+run(host='localhost', port=3030, debug=True)
