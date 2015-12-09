@@ -6,7 +6,9 @@ from bottle import route, request, view, run, jinja2_template as template
 
 @route('/')
 def index():
-    with open('newsclip.dump', 'rb') as f:
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    dump_file = os.path.normpath(os.path.join(dirname, './newclip.dump'))
+    with open(dump_file, 'rb') as f:
         entries = pickle.load(f)
 
     queries = []
