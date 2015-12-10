@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/bpython
 # -*- coding: utf-8 -*-
 
-import pickle
+import os, pickle
 from bottle import route, request, view, run, jinja2_template as template
 
 @route('/')
@@ -15,6 +15,7 @@ def index():
     for query in entries:
         queries.append(query)
 
-    return template('./index.j2', queries=queries, entries=entries)
+    template_file = os.path.normpath(os.path.join(dirname, './index.j2'))
+    return template(template_file, queries=queries, entries=entries)
 
 run(host='localhost', port=3030, debug=True)
