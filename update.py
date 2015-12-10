@@ -8,6 +8,9 @@ def format_date(date_str):
     date = datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S %Z")
     return datetime.strftime(date, '%Y年%m月%d日').decode('utf-8')
 
+def get_original_url(google_url):
+    return google_url.split('&url=')[-1]
+
 def main():
     endpoint = 'http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=-CLIP+'
 
@@ -29,7 +32,7 @@ def main():
             title = ' - '.join(components)
             entries[query].append({
                 'title': title,
-                'link': entry['link'],
+                'link': get_original_url(entry['link']),
                 'date': format_date(entry['published']),
                 'source': source
             })
