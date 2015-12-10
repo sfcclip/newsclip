@@ -34,7 +34,7 @@ def main():
                 'source': source
             })
 
-    dump_file = os.path.normpath(os.path.join(dirname, './newclip.dump'))
+    dump_file = os.path.normpath(os.path.join(dirname, './newsclip.dump'))
     with open(dump_file, 'wb') as f:
         pickle.dump(entries, f)
 
