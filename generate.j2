@@ -20,7 +20,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">NEWS CLIP</a>
+            <a class="navbar-brand" href="#">NEWS CLIP beta</a>
           </div>
         </div>
       </nav>
@@ -29,7 +29,7 @@
     <div class="main container">
             <pre>
 {% for entry in entries %}
-## ▼ {{ entry['title'] }}
+▼ {{ entry['title'] }}
 &lt;{{ entry['link'] }}&gt;
 ({{ entry['date'] }} {{ entry['source'] }})
 {% endfor %}
