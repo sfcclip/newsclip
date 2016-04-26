@@ -25,14 +25,12 @@ def index():
 
 @route('/generate', method='POST')
 def generate():
-    urls = request.forms.getall('urls')
-    print(urls)
+    uuids = request.forms.getall('uuids')
 
     queries, entries = load_data()
 
-    list = []
-    for query in queries:
-        list += [entry for entry in entries[query] if entry['link'] in urls]
+    list = [entry for query in queries for entry in entries[query] if entry['uuid'] in uuids]
+
     template_file = os.path.normpath(os.path.join(dirname, './generate.j2'))
     return template(template_file, entries=list)
 

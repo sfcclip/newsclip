@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, pickle, feedparser, urllib
+from uuid import uuid1
 from datetime import datetime
 
 def format_date(date_str):
@@ -31,9 +32,10 @@ def main():
             source = components.pop()
             title = ' - '.join(components)
             entries[query].append({
-                'title': title,
-                'link': get_original_url(entry['link']),
-                'date': format_date(entry['published']),
+                'uuid'  : str(uuid1()),
+                'title' : title,
+                'link'  : get_original_url(entry['link']),
+                'date'  : format_date(entry['published']),
                 'source': source
             })
 
