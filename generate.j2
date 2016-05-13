@@ -30,7 +30,7 @@
             <pre>
 {% for entry in entries %}
 ▼ {{ entry['title'] }}
-&lt;{{ entry['link'] }}&gt;
+[{{ entry['link'] }}]({{ entry['link'] }})
 ({{ entry['date'] }} {{ entry['source'] }})
 {% endfor %}
             </pre>
