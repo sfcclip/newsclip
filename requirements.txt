@@ -1,2 +1,4 @@
 bottle==0.12.13
 feedparser==5.2.1
+Jinja2==2.9.6
+MarkupSafe==1.0
