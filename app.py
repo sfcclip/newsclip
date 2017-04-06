@@ -24,4 +24,5 @@ def generate():
     list = [entry for query in entries.keys() for entry in entries[query] if entry['uuid'] in uuids]
     return template('generate.j2', entries=list)
 
-run(host='localhost', port=3030, debug=True)
+port = os.environ['PORT'] if 'PORT' in os.environ else 8080
+run(host='localhost', port=port, debug=True)
