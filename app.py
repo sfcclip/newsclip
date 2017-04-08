@@ -15,14 +15,15 @@ def load_data():
 @route('/')
 def index():
     entries = load_data();
-    return template('index.j2', queries=entries.keys(), entries=entries)
+    print(os.path.join(os.path.dirname(__file__), 'index.j2'))
+    return template(os.path.join(os.path.dirname(__file__), 'index.j2'), queries=entries.keys(), entries=entries)
 
 @route('/generate', method='POST')
 def generate():
     entries = load_data()
     uuids = request.forms.getall('uuids')
     list = [entry for query in entries.keys() for entry in entries[query] if entry['uuid'] in uuids]
-    return template('generate.j2', entries=list)
+    return template(os.path.join(os.path.dirname(__file__), 'generate.j2'), entries=list)
 
 port = os.environ['PORT'] if 'PORT' in os.environ else 8080
 run(host='localhost', port=port, debug=True)
