@@ -13,7 +13,7 @@ def get_original_url(google_url):
     return google_url.split('&url=')[-1]
 
 def main():
-    endpoint = 'https://news.google.com/news/rss/search/section/q/-CLIP+%s?ned=jp&gl=JP&hl=ja'
+    endpoint = 'https://news.google.com/news/rss/search/section/q/%s?ned=jp&gl=JP&hl=ja'
 
     print('Loading queries...')
     dirname = os.path.dirname(os.path.abspath(__file__))
