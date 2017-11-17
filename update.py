@@ -28,15 +28,11 @@ def main():
         feed = feedparser.parse(url)
         entries[query] = []
         for entry in feed['entries']:
-            components = entry['title'].split(' - ')
-            source = components.pop()
-            title = ' - '.join(components)
             entries[query].append({
                 'uuid'  : str(uuid1()),
-                'title' : title,
+                'title' : entry['title'],
                 'link'  : get_original_url(entry['link']),
-                'date'  : format_date(entry['published']),
-                'source': source
+                'date'  : format_date(entry['published'])
             })
 
     dump_file = os.path.normpath(os.path.join(dirname, './newsclip.dump'))
