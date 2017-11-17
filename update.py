@@ -13,7 +13,7 @@ def get_original_url(google_url):
     return google_url.split('&url=')[-1]
 
 def main():
-    endpoint = 'http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=-CLIP+'
+    endpoint = 'https://news.google.com/news/rss/search/section/q/-CLIP+%s?ned=jp&gl=JP&hl=ja'
 
     print('Loading queries...')
     dirname = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +24,7 @@ def main():
     entries = {}
     for query in queries:
         print('Fetching news for about "' + query + '"')
-        url = endpoint + urllib.quote(query)
+        url = endpoint % urllib.quote(query)
         feed = feedparser.parse(url)
         entries[query] = []
         for entry in feed['entries']:
